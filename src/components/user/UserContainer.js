@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-// import { gapi } from 'gapi-script'; // to bring gapi
 import PropTypes from 'prop-types';
 
 import { auth } from './Auth';
@@ -7,7 +6,6 @@ import { auth } from './Auth';
 export default class UserContainer extends Component {
   static propTypes = {
     prop: PropTypes,
-    // handleAuth: PropTypes.func,
   };
 
   constructor(props) {
@@ -17,93 +15,56 @@ export default class UserContainer extends Component {
       user: null,
     };
 
+    this.gapi = null;
+
     this.signinBtn = React.createRef();
     this.updateUser = this.updateUser.bind(this);
+    this.onClickSignin = this.onClickSignin.bind(this);
     this.onSignOut = this.onSignOut.bind(this);
-    this.attachSignin = this.attachSignin.bind(this);
 
-    this.loadGapiScript = this.loadGapiScript.bind(this);
     this.updateSigninStatus = this.updateSigninStatus.bind(this);
+    this.onGapiLoad = this.onGapiLoad.bind(this);
   }
 
   // check user already sign in or not
   componentDidMount() {
-    // let auth2 = await loadAuth2(auth.CLIENT_ID, auth.SCOPE);
-    // console.log(auth2.attachClickHandler);
-    // if (auth2.isSignedIn.get()) {
-    //   auth2.this.updateUser(auth2.currentUser.get());
-    // } else {
-    //   this.attachSignin(auth2);
-    // }
-
     const script = document.createElement('script');
-    // script.onload = () => {
-    //   console.log('on load script');
 
-    //   this.loadGapiScript(script);
-    // };
     script.setAttribute('defer', 'defer');
     script.setAttribute('async', 'async');
     script.src = 'https://apis.google.com/js/api.js?onload=onGapiLoad';
-    window.onGapiLoad = function onGapiLoad() {
-      const gapi = window.gapi;
-      gapi.load('client:auth2', function () {
-        gapi.client
-          .init(auth)
-          .then(() => {
-            // console.log(gapi.auth2.getAuth);
-            console.log(gapi.auth2.getAuthInstance());
-            // gapi.auth2
-            //   .getAuthInstance()
-            //   .isSignedIn.listen(this.updateSigninStatus);
-
-            // this.updateSigninStatus(
-            //   gapi.auth2.getAuthInstance().isSignedIn.get()
-            // );
-
-            gapi.auth2.getAuthInstance().signIn();
-          })
-          .catch((err) => console.log(err));
-      });
-
-      // function onAuthApiLoad() {
-      //   console.log('load auth', gapi.client.init(auth));
-      //   gapi.client.init(auth).then(() => {
-      //     // console.log(gapi.auth2.getAuth);
-      //   });
-      // }
-    };
+    window.onGapiLoad = this.onGapiLoad;
     document.body.appendChild(script);
+  }
+
+  onGapiLoad() {
+    // this.setState({ gapi: window.gapi });
+    const gapi = window.gapi;
+    this.gapi = window.gapi;
+    const that = this;
+    gapi.load('client:auth2', function () {
+      gapi.client
+        .init(auth)
+        .then(() => {
+          gapi.auth2
+            .getAuthInstance()
+            .isSignedIn.listen(that.updateSigninStatus);
+
+          that.updateSigninStatus(
+            gapi.auth2.getAuthInstance().isSignedIn.get()
+          );
+        })
+        .catch((err) => console.log(err));
+    });
   }
 
   updateSigninStatus(isSignedIn) {
     console.log(isSignedIn);
   }
 
-  loadGapiScript(script) {
-    console.log(script.getAttribute('gapi_processed'));
-    if (script.getAttribute('gapi_processed')) {
-      console.log('script is loaded');
-    } else {
-      console.log("Client wasn't ready, trying again in 100ms");
-      // setTimeout(() => {
-      //   this.loadGapiScript(script);
-      // }, 1000);
-    }
-  }
-
-  attachSignin(auth2) {
-    // in this api, we use attachClickHandler to onClick event
-    auth2.attachClickHandler(
-      this.signinBtn.current,
-      {},
-      (user) => {
-        this.updateUser(user);
-      },
-      (err) => {
-        console.log(JSON.stringify(err));
-      }
-    );
+  onClickSignin(e) {
+    console.log(this.gapi);
+    this.gapi.auth2.getAuthInstance().signIn();
   }
 
   updateUser(curUser) {
@@ -129,7 +90,7 @@ export default class UserContainer extends Component {
   render() {
     const user = this.state.user;
 
-    console.log(this.state);
+    // console.log(this.state);
 
     let userSignin;
     if (!user)
@@ -137,7 +98,9 @@ export default class UserContainer extends Component {
       // in this state, there is no search button
       userSignin = (
         <div className="two columns">
-          <button ref={this.signinBtn}>sign in</button>
+          <button onClick={this.onClickSignin} ref={this.signinBtn}>
+            sign in
+          </button>
         </div>
       );
     // not sign in, this element seperated from parent component's row
