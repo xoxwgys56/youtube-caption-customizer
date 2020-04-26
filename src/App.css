@@ -111,6 +111,40 @@ iframe {
   }
 }
 
+/* NoVideo */
+.no-video {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+
+  margin-bottom: 10px;
+
+  color: #fff;
+  font-size: 5vw;
+  text-transform: uppercase;
+  text-align: center;
+  background-color: black;
+}
+
+/* LoadingVideo */
+.loading-video {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+
+  margin-bottom: 10px;
+
+  color: #fff;
+  font-size: 4vw;
+  text-transform: uppercase;
+  text-align: center;
+  background-color: #d3d3d3;
+}
+
 /* search input */
 
 /* .search-input {

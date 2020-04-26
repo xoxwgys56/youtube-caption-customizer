@@ -5,7 +5,8 @@ import { auth } from './Auth';
 
 export default class UserContainer extends Component {
   static propTypes = {
-    prop: PropTypes,
+    // prop: PropTypes,
+    handleAuth: PropTypes.func,
   };
 
   constructor(props) {
@@ -73,7 +74,7 @@ export default class UserContainer extends Component {
     } else {
       this.setState({ user: null });
     }
-
+    // update VideoContainer
     this.props.handleAuth(isSignedIn);
   }
 

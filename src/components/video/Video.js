@@ -39,20 +39,16 @@ Video.propTypes = {
 
 const NoVideo = () => {
   return (
-    <div className="youtube">
-      no video
-      <iframe></iframe>
+    <div className="no-video">
+      no video, input link
+      <div className="no-video"></div>
+      {/* <iframe></iframe> */}
     </div>
   );
 };
 
 const LoadingVideo = () => {
-  return (
-    <div className="youtube">
-      loading video
-      <iframe></iframe>
-    </div>
-  );
+  return <div className="loading-video">loading video</div>;
 };
 
 export default Video;

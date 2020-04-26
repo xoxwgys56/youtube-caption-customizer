@@ -23,14 +23,14 @@ class CaptionContainer extends Component {
       captionList: null,
     };
 
-    fetch(srtFile)
-      .then((rep) => rep.text())
-      .then((data) => {
-        const srt = parse(data);
-        // whatever, it is works...
-        this.setState({ caption: srt });
-      })
-      .catch((err) => console.log(err));
+    // fetch(srtFile)
+    //   .then((rep) => rep.text())
+    //   .then((data) => {
+    //     const srt = parse(data);
+    //     // whatever, it is works...
+    //     this.setState({ caption: srt });
+    //   })
+    //   .catch((err) => console.log(err));
 
     this.container = React.createRef();
 
@@ -42,13 +42,28 @@ class CaptionContainer extends Component {
     this.props.handleCaption(this.getCaptionList);
   }
 
+  componentDidUpdate() {
+    // const video = this.props.video;
+    // if (video) this.getCaptionList(video.id);
+  }
+
   setScrollPosition(y) {
     // this.container.scrollTo(0, y);
   }
 
+  // get caption language list
   getCaptionList(videoId) {
     const gapi = window.gapi;
 
+    const captionMap = new Map();
+    for (let i = 0; i < 100; i++) {
+      captionMap.set(i, i);
+    }
+
+    this.setState({ captionList: captionMap });
+    console.log('caption map loaded');
+
+    return;
     gapi.client.youtube.captions
       .list({
         part: 'snippet',
@@ -79,33 +94,49 @@ class CaptionContainer extends Component {
 
   render() {
     const video = this.props.video;
+
     // no video
     if (!video) {
       return <div>no video loaded</div>;
     }
     // not sign in
-    if (!this.props.user) {
+    if (!this.props.isSignIn) {
       return <div>user not sign in. you need sign in</div>;
     }
 
-    const caption = this.state.caption;
+    console.log('caption ', this.state);
 
-    // result
-    if (!caption) {
-      return <Fragment>{this.select}no caption</Fragment>;
+    if (!this.state.captionList) {
+      return <div>loading caption list</div>;
     } else {
-      const container = (
-        <Fragment>
-          {this.select}
-          <div className="caption-container" ref={this.container}>
-            {caption.map((item, i) => {
-              return <CaptionItem text={item.text} key={i} />;
-            })}
-          </div>
-        </Fragment>
+      // make caption selector
+      const select = (
+        <div>
+          <select>
+            {this.state.captionList.forEach((caption) => (
+              <option value={caption.id}>{caption.value}</option>
+            ))}
+          </select>
+        </div>
       );
 
-      return container;
+      // caption not loaded
+      if (!this.state.caption) {
+        return <div>caption list{select}</div>;
+      }
+      // caption loaded
+      else {
+        return (
+          <div>
+            {this.select}
+            <div className="caption-container" ref={this.container}>
+              {this.state.caption.map((item, i) => {
+                return <CaptionItem text={item.text} key={i} />;
+              })}
+            </div>
+          </div>
+        );
+      }
     }
   }
 }
