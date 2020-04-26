@@ -18,7 +18,8 @@ class VideoContainer extends Component {
     };
 
     this.validateVideoLink = this.validateVideoLink.bind(this);
-    this.handleAuth = this.handleAuth(this);
+    this.handleAuth = this.handleAuth.bind(this);
+    this.handleCaption = this.handleCaption.bind(this);
   }
 
   // video : {
@@ -92,7 +93,6 @@ class VideoContainer extends Component {
       } else {
         // no time
         const id = temp.split('&')[0];
-        console.log('id ', id);
         this.setState({
           video: {
             id: id,
@@ -105,8 +105,14 @@ class VideoContainer extends Component {
     }
   };
 
-  handleAuth(e) {
-    // console.log(e);
+  handleAuth(isSignedIn) {
+    if (isSignedIn) {
+      this.getCaption(this.state.video.id);
+    }
+  }
+
+  handleCaption(e) {
+    this.getCaption = e;
   }
 
   // onControllerChange(e) {
@@ -139,7 +145,10 @@ class VideoContainer extends Component {
               <UserContainer handleAuth={this.handleAuth} />
             </VideoSearch>
           </div>
-          <CaptionContainer video={this.props.video} />
+          <CaptionContainer
+            handleCaption={this.handleCaption}
+            video={this.props.video}
+          />
           {/* <VideoController onControllerChange={this.onControllerChange} /> */}
         </div>
       </div>
