@@ -160,6 +160,7 @@ export default class CaptionConfig extends Component {
               <select onChange={this.onChangeStyle}>
                 <option value="normal">normal</option>
                 <option value="italic">italic</option>
+                <option value="oblique">oblique</option>
               </select>
             </div>
           </div>
