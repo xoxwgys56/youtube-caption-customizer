@@ -2,6 +2,9 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { auth } from './Auth';
+import { ErrorMsg } from '../util/Msg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 export default class UserContainer extends Component {
   static propTypes = {
@@ -14,7 +17,7 @@ export default class UserContainer extends Component {
 
     this.state = {
       user: null,
-      signinFail: false,
+      errorMsg: '',
       gapi: null,
     };
 
@@ -25,6 +28,7 @@ export default class UserContainer extends Component {
     this.updateSigninStatus = this.updateSigninStatus.bind(this);
     this.onGapiLoad = this.onGapiLoad.bind(this);
     this.failedSignin = this.failedSignin.bind(this);
+    this.setError = this.setError.bind(this);
   }
 
   // check user already sign in or not
@@ -82,14 +86,12 @@ export default class UserContainer extends Component {
     this.state.gapi.auth2
       .getAuthInstance()
       .signIn()
-      .then(() => this.setState({ signinFail: false }))
-      .catch(this.failedSignin);
+      .catch((err) => this.setError('Failed sign in. please try again.'));
   }
 
   failedSignin(err) {
     const msg = 'Sign in Failed by ' + err.error;
     const error = new Error(msg);
-    this.setState({ signinFail: true });
     throw error;
   }
 
@@ -100,38 +102,58 @@ export default class UserContainer extends Component {
     });
   }
 
+  // 경고 메세지.
+  setError(msg) {
+    const timeOut = 6000;
+    this.setState({ errorMsg: msg });
+    console.log(msg);
+    setTimeout(() => {
+      this.setState({ errorMsg: '' });
+    }, timeOut);
+  }
+
   render() {
     let userSignin;
+    // user signed in
     if (!this.state.user) {
-      let signinFailBlock = '';
-      if (this.state.signinFail)
-        signinFailBlock = (
-          <div className="twelve columns">failed sign in. try again</div>
-        );
+      let error = '';
+      if (this.state.errorMsg !== '')
+        error = <ErrorMsg msg={this.state.errorMsg} />;
       // if not sign in, this element include parent component's row
       // in this state, there is no search button
+      /**
+       * 로그인한 상태가 아니라면, 이 요소는 부모(VideoSearch)의 row에 속하기 때문에 column을 사용한다.
+       */
       userSignin = (
         <Fragment>
-          {signinFailBlock}
-          <div className="two columns">
-            <button onClick={this.onClickSignin} ref={this.signinBtn}>
-              sign in
-            </button>
-          </div>
+          {error}
+          <button
+            className="sign-in-btn two columns"
+            onClick={this.onClickSignin}
+            ref={this.signinBtn}
+          >
+            <FontAwesomeIcon icon={faSignInAlt} />
+          </button>
         </Fragment>
       );
     }
-    // not sign in, this element seperated from parent component's row
+    // sign in, this element seperated from parent component's row
     else {
       userSignin = (
-        <div className="user-container">
-          <div className="row">
-            <div className=" eight columns">Hello {this.state.user.name}</div>
-            <div className="one columns">
-              <button onClick={this.onSignOut}>sign out</button>
-            </div>
+        <Fragment>
+          <div className="two columns user-img">
+            <img className="user-img" src={this.state.user.imgUrl} />
           </div>
-        </div>
+          <h5 className="five columns u-full-width">
+            Hello {this.state.user.name}
+          </h5>
+          <button
+            className="sign-out-btn two columns u-pull-right"
+            onClick={this.onSignOut}
+          >
+            <FontAwesomeIcon icon={faSignOutAlt} />
+          </button>
+        </Fragment>
       );
     }
 

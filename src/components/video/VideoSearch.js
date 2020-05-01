@@ -22,21 +22,18 @@ class VideoSearch extends Component {
     // not sign in
     if (!this.props.isSignin) {
       return (
-        <div className="row">
-          <SearchForm onSubmit={this.onSubmit}>
-            {this.props.children}
-          </SearchForm>
-        </div>
+        // <div className="row">
+        <SearchForm onSubmit={this.onSubmit} />
+        // </div>
       );
       // sign in
     } else {
       return (
-        <div>
-          <SearchForm onSubmit={this.onSubmit}>
-            <SearchButton />
-          </SearchForm>
-          {this.props.children}
-        </div>
+        // <div>
+        <SearchForm onSubmit={this.onSubmit}>
+          <SearchButton />
+        </SearchForm>
+        // </div>
       );
     }
   }
@@ -63,18 +60,18 @@ class SearchForm extends Component {
   render() {
     return (
       <form onSubmit={this.props.onSubmit}>
-        <div className="row">
-          <div className="u-full-width ten columns">
-            <input
-              id="search-input"
-              // className="search-input"
-              placeholder="youtube link"
-              type="text"
-              ref={this.inputRef}
-            />
-          </div>
-          {this.props.children}
+        {/* <div className="row u-full-width"> */}
+        <div className="ten columns">
+          <input
+            id="search-input"
+            className="search-input"
+            placeholder="youtube link"
+            type="text"
+            ref={this.inputRef}
+          />
         </div>
+        {this.props.children}
+        {/* </div> */}
       </form>
     );
   }
@@ -82,13 +79,13 @@ class SearchForm extends Component {
 
 const SearchButton = () => {
   return (
-    <div className="two columns">
+    <div className="u-pull-right two columns">
       <input
-        className="search-submit-text button-primary"
+        className="u-full-width search-submit-text"
         type="submit"
         value="search"
       />
-      <button className="search-submit-icon" type="submit">
+      <button className="u-full-width search-submit-icon" type="submit">
         <FontAwesomeIcon icon={faSearch} />
       </button>
     </div>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Youtube from 'react-youtube';
 
 const Video = (props) => {
-  const video = props.video;
+  const { video, onReady, onPlay, onPause, onEnd } = props;
 
   if (!video) {
     return <NoVideo />;
@@ -12,8 +12,8 @@ const Video = (props) => {
   const option = {
     playerVars: {
       autoplay: 0,
-      controls: 0,
-      // fs: 0, // do not use contols so it does not happen
+      controls: 1,
+      fs: 0,
       modestbranding: 1,
       rel: 0,
     },
@@ -24,9 +24,10 @@ const Video = (props) => {
       <Youtube
         videoId={video.id}
         opts={option}
-        onReady={props.onReady}
-        onPlay={props.onPlay}
-        onPause={props.onPause}
+        onReady={onReady}
+        onPlay={onPlay}
+        onPause={onPause}
+        onEnd={onEnd}
       />
     </div>
   );
@@ -47,8 +48,8 @@ const NoVideo = () => {
   );
 };
 
-const LoadingVideo = () => {
-  return <div className="loading-video">loading video</div>;
-};
+// const LoadingVideo = () => {
+//   return <div className="loading-video">loading video</div>;
+// };
 
 export default Video;

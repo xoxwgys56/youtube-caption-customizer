@@ -37,28 +37,39 @@
   }
 }
 
-/* caption */
+/* root */
+.root-blur {
+  filter: blur(1px);
+}
+
+/* Caption Container */
 
 .caption-container {
   width: 100%;
-  height: 5em;
-  background-color: bisque;
-  overflow: scroll;
+  height: 10em;
+  /* background-color: bisque; */
 }
 
 .caption-item {
-  border: 1px solid #000;
   text-align: center;
   margin: auto auto;
   background-color: white;
   width: 80%;
 }
 
+.caption-itme h5,
+.caption-item h6 {
+  margin: auto auto;
+}
+
+.caption-language {
+  text-transform: uppercase;
+}
+
 @media (max-width: 940px) {
   .caption-container {
     width: 100%;
-    height: 10em;
-    overflow: scroll;
+    height: 20em;
   }
 
   .caption-item {
@@ -70,14 +81,140 @@
 @media (max-width: 480px) {
   .caption-container {
     width: 100%;
-    height: 20em;
-    overflow: scroll;
+    height: 15em;
   }
 
   .caption-item {
     background-color: white;
     width: 80%;
   }
+}
+
+.caption-config {
+  margin: auto auto;
+}
+
+.caption-config-popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  /* cursor: pointer; */
+}
+
+.caption-config-popup-content {
+  position: fixed;
+  margin: auto auto;
+  top: 20%;
+  left: 20%;
+  width: 60%;
+  height: 50%;
+  background-color: #fafafa;
+  z-index: 10;
+}
+
+.caption-config-popup-title {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 3rem;
+  height: 10%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.caption-config-popup-exit {
+  position: absolute;
+  right: 1px;
+  top: 0px;
+  cursor: pointer;
+  margin: auto auto;
+  padding: 10px 20px;
+}
+
+.caption-config-popup-row {
+  width: 80%;
+  height: 20%;
+  margin: auto auto;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.caption-config-apply {
+  position: absolute;
+  cursor: pointer;
+  text-align: center;
+  text-transform: uppercase;
+  bottom: 10px;
+  font-size: 2rem;
+  /* background-color: #000; */
+  /* color: #fff; */
+  /* border-radius: 30px; */
+  width: 60%;
+}
+
+.caption-config-popup-slider {
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 5px;
+  height: 5px;
+  background-color: #bdbdbd;
+}
+
+.caption-config-result {
+  text-align: center;
+  position: absolute;
+  text-overflow: '...';
+  word-wrap: break-word;
+}
+
+.caption-config-popup-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #000;
+  cursor: pointer;
+}
+
+.caption-config-popup-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #000;
+  cursor: pointer;
+}
+
+.caption-invisible {
+  visibility: hidden;
+}
+
+.caption-visible {
+  visibility: visible;
+}
+
+/* utils */
+.error-msg {
+  display: block;
+  width: 100%;
+  background-color: #f44336;
+  color: white;
+}
+
+.warning-msg {
+  display: block;
+  width: 100%;
+  background-color: #ff9800;
+  color: white;
+}
+
+.warning-msg {
+  display: block;
+  width: 100%;
+  background-color: #2196f3;
+  color: white;
 }
 
 /* app title */
@@ -145,21 +282,26 @@ iframe {
   background-color: #d3d3d3;
 }
 
+.video-warning {
+  display: block;
+  background-color: #ff9800;
+  color: #fff;
+}
+
 /* search input */
 
-/* .search-input {
-  width: 80%;
-} */
+.search-input {
+  width: 100%;
+}
 
 .search-submit-text {
   visibility: visible;
   display: inline-block;
-  /* margin-left: 1%; */
-  /* width: 19%; */
+  text-align: center;
 }
 
 .search-submit-icon {
-  visibility: hidden;
+  text-align: center;
   display: none;
 }
 
@@ -193,10 +335,51 @@ iframe {
   }
 }
 
+/* User Container*/
 .user-container {
   float: right;
   margin: 1px auto;
-  background-color: #61dafb;
+  margin-top: 5px;
+}
+
+.user-img {
+  display: inline-block;
+  height: 30px;
+  border-radius: 30px;
+  margin: auto auto;
+}
+
+.user-row {
+  vertical-align: middle;
+}
+
+.sign-in-btn {
+  background-color: #2196f3;
+  color: #fff;
+  text-align: center;
+  outline: none;
+  border: 0;
+}
+
+.sign-in-btn:hover {
+  color: #006064;
+  outline: none;
+  border: 0;
+}
+
+.sign-out-btn {
+  text-align: center;
+  outline: none;
+  border: 0;
+
+  background-color: #009688;
+  color: #fff;
+}
+
+.sign-out-btn:hover {
+  text-align: center;
+  outline: none;
+  border: 0;
 }
 
 form {
@@ -275,7 +458,7 @@ form {
 }
 
 .footer {
-  position: absolute;
+  /* position: absolute; */
   bottom: 0;
   left: 0;
   width: 100%;
