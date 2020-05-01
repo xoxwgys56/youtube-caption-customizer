@@ -20,6 +20,8 @@ _ weight \* additional side caption
     * react-color
     * subtitle.js
     * js-cookie
+    * oauth2
+    * fontawesome
 
 ## Usage
 
