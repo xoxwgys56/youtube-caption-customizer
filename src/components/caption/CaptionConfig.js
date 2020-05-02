@@ -186,7 +186,7 @@ export default class CaptionConfig extends Component {
               />
             </div>
           </div>
-          {/* sync controll */}
+          {/* sync control */}
           <div className="row caption-config-popup-row">
             <div className="four columns">sync</div>
             <div className="eight columns">

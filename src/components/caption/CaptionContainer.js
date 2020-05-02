@@ -34,7 +34,7 @@ class CaptionContainer extends Component {
     this.getTestCaption = this.getTestCaption.bind(this);
 
     // test caption if exceed limitation.
-    this.getTestCaption();
+    // this.getTestCaption();
   }
 
   componentDidMount() {
