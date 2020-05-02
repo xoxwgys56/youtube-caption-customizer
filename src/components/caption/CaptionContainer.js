@@ -179,32 +179,32 @@ class CaptionContainer extends Component {
     // there is no caption
     if (indexes.length === 0) return bunch;
 
-    const emptyItem = { start: 0, end: 0, text: '' };
+    const emptyItem = { start: 0, end: 0, text: '', primary: false };
 
     // first caption.
-    if (indexes[0] === 0) {
-      bunch.push(emptyItem);
-      for (let i = 0; i < 2; i++) bunch.push(captions[i]);
-    } else {
-      let index = indexes[0];
-      if (this.state.config.checkSideCaption) index = indexes[0];
-      else index = indexes[0] + 1;
-      // push current caption
-      for (let i = 0; i < indexes.length; i++) {
+    // if (indexes[0] === 0) {
+    //   bunch.push(emptyItem);
+    //   for (let i = 0; i < 2; i++) bunch.push(captions[i]);
+    // } else {
+    let index = indexes[0];
+    // push current caption
+    for (let i = 0; i < indexes.length; i++) {
+      const caption = captions[index++];
+      caption.primary = true;
+      if (caption) bunch.push(caption);
+      // exception of last caption
+      else bunch.push(emptyItem);
+    }
+    if (this.state.config.checkSideCaption) {
+      const least = 3 - bunch.length;
+      for (let i = 0; i < least; i++) {
         const caption = captions[index++];
+        caption.primary = false;
         if (caption) bunch.push(caption);
         // exception of last caption
         else bunch.push(emptyItem);
       }
-      if (this.state.config.checkSideCaption) {
-        const least = 3 - bunch.length;
-        for (let i = 0; i < least; i++) {
-          const caption = captions[index++];
-          if (caption) bunch.push(caption);
-          // exception of last caption
-          else bunch.push(emptyItem);
-        }
-      }
+      // }
     }
     // console.log(bunch);
     return bunch;

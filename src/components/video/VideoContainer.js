@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
+import { isMobile } from 'react-device-detect';
 
 import Video from './Video';
 import CaptionContainer from '../caption/CaptionContainer';
@@ -30,9 +31,6 @@ class VideoContainer extends Component {
     this.setTimer = this.setTimer.bind(this);
     this.onEnd = this.onEnd.bind(this);
     this.offTimer = this.offTimer.bind(this);
-    // this.setWarning = this.setWarning.bind(this);
-    // this.setError = this.setError.bind(this);
-    // this.setInfo = this.setInfo.bind(this);
   }
 
   componentDidMount() {
@@ -171,6 +169,8 @@ class VideoContainer extends Component {
     const player = e.target;
     this.setState({ player: player });
 
+    // check is this mobile or not
+    if (isMobile) return;
     if (this.state.video.lastTime) {
       player.seekTo(this.state.video.lastTime);
       player.pauseVideo();
