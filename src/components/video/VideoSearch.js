@@ -4,6 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Cookies from 'js-cookie';
 
+/** Handle Search input
+ *
+ * check validate of link and send result to VideoContainer
+ *
+ * more like container component
+ */
 class VideoSearch extends Component {
   constructor(props) {
     super(props);
@@ -43,6 +49,10 @@ VideoSearch.propTypes = {
   isSignin: PropTypes.bool.isRequired,
 };
 
+/** VideoSearch's search form
+ *
+ * presentation component
+ */
 class SearchForm extends Component {
   constructor(props) {
     super(props);
@@ -60,7 +70,6 @@ class SearchForm extends Component {
   render() {
     return (
       <form onSubmit={this.props.onSubmit}>
-        {/* <div className="row u-full-width"> */}
         <div className="ten columns">
           <input
             id="search-input"
@@ -71,12 +80,15 @@ class SearchForm extends Component {
           />
         </div>
         {this.props.children}
-        {/* </div> */}
       </form>
     );
   }
 }
 
+/** Search button inside of SearchForm
+ *
+ * these buttons's representation is decided to screen size
+ */
 const SearchButton = () => {
   return (
     <div className="u-pull-right two columns">

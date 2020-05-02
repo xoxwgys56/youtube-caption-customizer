@@ -1,5 +1,10 @@
 import React from 'react';
 
+/**
+ * Error message
+ *
+ * presentation component
+ */
 export const ErrorMsg = (props) => {
   const { msg } = props;
   // throw msg;
@@ -15,7 +20,7 @@ export const ErrorMsg = (props) => {
 
 export const WarningMsg = (props) => {
   const { msg } = props;
-  console.log('warning message : ', msg);
+  // console.log('warning message : ', msg);
   return (
     <div className="row">
       <div className="twelve columns warning-msg">
@@ -28,7 +33,7 @@ export const WarningMsg = (props) => {
 
 export const InfoMsg = (props) => {
   const { msg } = props;
-  console.log('info message : ', msg);
+  // console.log('info message : ', msg);
   return (
     <div className="row">
       <div className="twelve columns warning-msg">

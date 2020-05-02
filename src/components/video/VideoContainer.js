@@ -115,12 +115,12 @@ class VideoContainer extends Component {
     // if sign in, get caption
     if (isSignedIn) {
       this.setState({ isSignin: true });
-      // user enter with address, get caption list
+      // check is there any valid link or not
+      const link = document.getElementById('search-input').value;
+      this.handleSubmit(link);
+      // if valid link, this will be save with state data.
       if (this.state.video) {
         this.getCaptionList(this.state.video.id);
-      } else {
-        // const msg = 'there is no video. please input your youtube link.';
-        // this.setInfo(msg);
       }
     } else {
       this.setState({ isSignin: false });
@@ -132,7 +132,7 @@ class VideoContainer extends Component {
   setWarning(msg) {
     const timeOut = 5000;
     this.setState({ warningMsg: msg });
-    console.log(msg);
+    console.log('warning message : ', msg);
     setTimeout(() => {
       this.setState({ warningMsg: '' });
     }, timeOut);

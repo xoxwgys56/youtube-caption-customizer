@@ -27,7 +27,6 @@ export default class UserContainer extends Component {
 
     this.updateSigninStatus = this.updateSigninStatus.bind(this);
     this.onGapiLoad = this.onGapiLoad.bind(this);
-    this.failedSignin = this.failedSignin.bind(this);
     this.setError = this.setError.bind(this);
   }
 
@@ -42,8 +41,10 @@ export default class UserContainer extends Component {
     document.body.appendChild(script);
   }
 
+  // when app mounted, get gpai.
   onGapiLoad() {
     const gapi = window.gapi;
+    // set gapi as state.
     this.setState({ gapi: gapi });
     const that = this;
     gapi.load('client:auth2', function () {
@@ -62,6 +63,7 @@ export default class UserContainer extends Component {
     });
   }
 
+  // call back function when user sign in and out
   updateSigninStatus(isSignedIn) {
     if (isSignedIn) {
       const profile = this.state.gapi.auth2
@@ -82,17 +84,12 @@ export default class UserContainer extends Component {
     this.props.handleAuth(isSignedIn);
   }
 
+  // sign in click listener
   onClickSignin(e) {
     this.state.gapi.auth2
       .getAuthInstance()
       .signIn()
       .catch((err) => this.setError('Failed sign in. please try again.'));
-  }
-
-  failedSignin(err) {
-    const msg = 'Sign in Failed by ' + err.error;
-    const error = new Error(msg);
-    throw error;
   }
 
   onSignOut(e) {

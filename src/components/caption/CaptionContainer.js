@@ -69,7 +69,7 @@ class CaptionContainer extends Component {
   setWarning(msg) {
     const timeOut = 6000;
     this.setState({ warningMsg: msg });
-    console.log(msg);
+    console.log('warning message : ', msg);
     setTimeout(() => {
       this.setState({ warningMsg: '' });
     }, timeOut);
@@ -78,7 +78,7 @@ class CaptionContainer extends Component {
   setError(msg) {
     const timeOut = 6000;
     this.setState({ errorMsg: msg });
-    console.log(msg);
+    console.log('error message : ', msg);
     setTimeout(() => {
       this.setState({ errorMsg: '' });
     }, timeOut);
@@ -181,11 +181,6 @@ class CaptionContainer extends Component {
 
     const emptyItem = { start: 0, end: 0, text: '', primary: false };
 
-    // first caption.
-    // if (indexes[0] === 0) {
-    //   bunch.push(emptyItem);
-    //   for (let i = 0; i < 2; i++) bunch.push(captions[i]);
-    // } else {
     let index = indexes[0];
     // push current caption
     for (let i = 0; i < indexes.length; i++) {
@@ -204,7 +199,6 @@ class CaptionContainer extends Component {
         // exception of last caption
         else bunch.push(emptyItem);
       }
-      // }
     }
     // console.log(bunch);
     return bunch;
