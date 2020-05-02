@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/youtube-caption-customizer/static/css/main.2c32f38f.chunk.css",
-    "main.js": "/youtube-caption-customizer/static/js/main.3f5e86a5.chunk.js",
-    "main.js.map": "/youtube-caption-customizer/static/js/main.3f5e86a5.chunk.js.map",
+    "main.js": "/youtube-caption-customizer/static/js/main.a74c16ae.chunk.js",
+    "main.js.map": "/youtube-caption-customizer/static/js/main.a74c16ae.chunk.js.map",
     "runtime-main.js": "/youtube-caption-customizer/static/js/runtime-main.db819917.js",
     "runtime-main.js.map": "/youtube-caption-customizer/static/js/runtime-main.db819917.js.map",
     "static/css/2.5bbf332f.chunk.css": "/youtube-caption-customizer/static/css/2.5bbf332f.chunk.css",
-    "static/js/2.7ef02094.chunk.js": "/youtube-caption-customizer/static/js/2.7ef02094.chunk.js",
-    "static/js/2.7ef02094.chunk.js.map": "/youtube-caption-customizer/static/js/2.7ef02094.chunk.js.map",
+    "static/js/2.8c0af639.chunk.js": "/youtube-caption-customizer/static/js/2.8c0af639.chunk.js",
+    "static/js/2.8c0af639.chunk.js.map": "/youtube-caption-customizer/static/js/2.8c0af639.chunk.js.map",
     "index.html": "/youtube-caption-customizer/index.html",
-    "precache-manifest.05f4dae1b309a765ba0f6d0467cbe16b.js": "/youtube-caption-customizer/precache-manifest.05f4dae1b309a765ba0f6d0467cbe16b.js",
+    "precache-manifest.4f858e1d649e8f2682e3968feeda19b3.js": "/youtube-caption-customizer/precache-manifest.4f858e1d649e8f2682e3968feeda19b3.js",
     "service-worker.js": "/youtube-caption-customizer/service-worker.js",
     "static/css/2.5bbf332f.chunk.css.map": "/youtube-caption-customizer/static/css/2.5bbf332f.chunk.css.map",
     "static/css/main.2c32f38f.chunk.css.map": "/youtube-caption-customizer/static/css/main.2c32f38f.chunk.css.map",
-    "static/js/2.7ef02094.chunk.js.LICENSE.txt": "/youtube-caption-customizer/static/js/2.7ef02094.chunk.js.LICENSE.txt"
+    "static/js/2.8c0af639.chunk.js.LICENSE.txt": "/youtube-caption-customizer/static/js/2.8c0af639.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.db819917.js",
     "static/css/2.5bbf332f.chunk.css",
-    "static/js/2.7ef02094.chunk.js",
+    "static/js/2.8c0af639.chunk.js",
     "static/css/main.2c32f38f.chunk.css",
-    "static/js/main.3f5e86a5.chunk.js"
+    "static/js/main.a74c16ae.chunk.js"
   ]
 }
