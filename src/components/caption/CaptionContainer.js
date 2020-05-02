@@ -3,7 +3,7 @@ import { parse } from 'subtitle';
 import CaptionItem from './CaptionItem';
 import { ErrorMsg, WarningMsg, InfoMsg } from '../util/Msg';
 
-// import srtFile from './kor.srt';
+import srtFile from './kor.srt';
 import CaptionSelector from './CaptionSelector';
 import CaptionConfig from './CaptionConfig';
 
@@ -22,22 +22,7 @@ class CaptionContainer extends Component {
       config: null,
     };
 
-    // test caption if exceed limitation.
-    // fetch(srtFile)
-    //   .then((rep) => rep.text())
-    //   .then((data) => {
-    //     // const encode = unescape(encodeURIComponent(data));
-    //     // console.log(encode);
-    //     const decode = decodeURIComponent(escape(data));
-    //     const srt = parse(decode);
-
-    //     // whatever, it is works...
-    //     this.setState({ caption: srt });
-    //   })
-    //   .catch((err) => console.log(err));
-
     this.container = React.createRef();
-
     this.getCaptionList = this.getCaptionList.bind(this);
     this.onChangeSelect = this.onChangeSelect.bind(this);
     this.getCaptions = this.getCaptions.bind(this);
@@ -46,6 +31,10 @@ class CaptionContainer extends Component {
     this.getBunchOfCaption = this.getBunchOfCaption.bind(this);
     this.onChangeConfig = this.onChangeConfig.bind(this);
     this.resetCaption = this.resetCaption.bind(this);
+    this.getTestCaption = this.getTestCaption.bind(this);
+
+    // test caption if exceed limitation.
+    this.getTestCaption();
   }
 
   componentDidMount() {
@@ -55,6 +44,21 @@ class CaptionContainer extends Component {
     e.push(this.setVideoTime);
     e.push(this.resetCaption);
     this.props.handleCaption(e);
+  }
+
+  getTestCaption() {
+    fetch(srtFile)
+      .then((rep) => rep.text())
+      .then((data) => {
+        // const encode = unescape(encodeURIComponent(data));
+        // console.log(encode);
+        const decode = decodeURIComponent(escape(data));
+        const srt = parse(decode);
+
+        // whatever, it is works...
+        this.setState({ caption: srt });
+      })
+      .catch((err) => console.log(err));
   }
 
   resetCaption() {

@@ -106,10 +106,10 @@
 .caption-config-popup-content {
   position: fixed;
   margin: auto auto;
-  top: 20%;
+  top: 10%;
   left: 20%;
   width: 60%;
-  height: 50%;
+  height: 80%;
   background-color: #fafafa;
   z-index: 10;
 }
@@ -134,7 +134,7 @@
 
 .caption-config-popup-row {
   width: 80%;
-  height: 20%;
+  height: 12%;
   margin: auto auto;
   text-align: center;
   font-size: 2rem;
@@ -167,6 +167,10 @@
   position: absolute;
   text-overflow: '...';
   word-wrap: break-word;
+}
+
+.caption-config-sync {
+  cursor: pointer;
 }
 
 .caption-config-popup-slider::-webkit-slider-thumb {

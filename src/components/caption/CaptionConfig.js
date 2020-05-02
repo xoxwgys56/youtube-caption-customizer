@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCogs, faTimes } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCogs,
+  faTimes,
+  faAngleRight,
+  faAngleLeft,
+} from '@fortawesome/free-solid-svg-icons';
 import { SliderPicker } from 'react-color';
 
 export default class CaptionConfig extends Component {
@@ -15,6 +20,7 @@ export default class CaptionConfig extends Component {
       fontUnit: 'em',
       maxFontSize: 3,
       checkSideCaption: true,
+      sync: 0,
     };
 
     this.onClickPopup = this.onClickPopup.bind(this);
@@ -85,6 +91,11 @@ export default class CaptionConfig extends Component {
   onChangeCheckbox(e) {
     const value = e.target.checked;
     this.setState({ checkSideCaption: value });
+  }
+
+  onClickSync(value) {
+    const curValue = this.state.sync;
+    this.setState({ sync: curValue + value });
   }
 
   render() {
@@ -160,7 +171,7 @@ export default class CaptionConfig extends Component {
               <select onChange={this.onChangeStyle}>
                 <option value="normal">normal</option>
                 <option value="italic">italic</option>
-                <option value="oblique">oblique</option>
+                {/* <option value="oblique">oblique</option> */}
               </select>
             </div>
           </div>
@@ -173,6 +184,27 @@ export default class CaptionConfig extends Component {
                 onChange={this.onChangeCheckbox}
                 checked={this.state.checkSideCaption}
               />
+            </div>
+          </div>
+          {/* sync controll */}
+          <div className="row caption-config-popup-row">
+            <div className="four columns">sync</div>
+            <div className="eight columns">
+              <div className="row u-full-width">
+                <span
+                  className="four columns caption-config-sync"
+                  onClick={() => this.onClickSync(-1)}
+                >
+                  <FontAwesomeIcon icon={faAngleLeft} />
+                </span>
+                <span className="four columns ">{this.state.sync}</span>
+                <span
+                  className="four columns caption-config-sync"
+                  onClick={() => this.onClickSync(1)}
+                >
+                  <FontAwesomeIcon icon={faAngleRight} />
+                </span>
+              </div>
             </div>
           </div>
           {/* config preview */}
