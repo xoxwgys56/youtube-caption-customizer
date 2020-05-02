@@ -1,25 +1,26 @@
 {
   "files": {
-    "main.css": "/youtube-caption-customizer/static/css/main.2c32f38f.chunk.css",
-    "main.js": "/youtube-caption-customizer/static/js/main.4191f17d.chunk.js",
-    "main.js.map": "/youtube-caption-customizer/static/js/main.4191f17d.chunk.js.map",
+    "main.css": "/youtube-caption-customizer/static/css/main.d435aff0.chunk.css",
+    "main.js": "/youtube-caption-customizer/static/js/main.3b354488.chunk.js",
+    "main.js.map": "/youtube-caption-customizer/static/js/main.3b354488.chunk.js.map",
     "runtime-main.js": "/youtube-caption-customizer/static/js/runtime-main.db819917.js",
     "runtime-main.js.map": "/youtube-caption-customizer/static/js/runtime-main.db819917.js.map",
     "static/css/2.5bbf332f.chunk.css": "/youtube-caption-customizer/static/css/2.5bbf332f.chunk.css",
-    "static/js/2.8c0af639.chunk.js": "/youtube-caption-customizer/static/js/2.8c0af639.chunk.js",
-    "static/js/2.8c0af639.chunk.js.map": "/youtube-caption-customizer/static/js/2.8c0af639.chunk.js.map",
+    "static/js/2.dc0066b4.chunk.js": "/youtube-caption-customizer/static/js/2.dc0066b4.chunk.js",
+    "static/js/2.dc0066b4.chunk.js.map": "/youtube-caption-customizer/static/js/2.dc0066b4.chunk.js.map",
     "index.html": "/youtube-caption-customizer/index.html",
-    "precache-manifest.a6ac55b4c7d14ae5e7ab8e876b41dbf9.js": "/youtube-caption-customizer/precache-manifest.a6ac55b4c7d14ae5e7ab8e876b41dbf9.js",
+    "precache-manifest.2ddf92ab1df1ad2ed341e0d901053784.js": "/youtube-caption-customizer/precache-manifest.2ddf92ab1df1ad2ed341e0d901053784.js",
     "service-worker.js": "/youtube-caption-customizer/service-worker.js",
     "static/css/2.5bbf332f.chunk.css.map": "/youtube-caption-customizer/static/css/2.5bbf332f.chunk.css.map",
-    "static/css/main.2c32f38f.chunk.css.map": "/youtube-caption-customizer/static/css/main.2c32f38f.chunk.css.map",
-    "static/js/2.8c0af639.chunk.js.LICENSE.txt": "/youtube-caption-customizer/static/js/2.8c0af639.chunk.js.LICENSE.txt"
+    "static/css/main.d435aff0.chunk.css.map": "/youtube-caption-customizer/static/css/main.d435aff0.chunk.css.map",
+    "static/js/2.dc0066b4.chunk.js.LICENSE.txt": "/youtube-caption-customizer/static/js/2.dc0066b4.chunk.js.LICENSE.txt",
+    "static/media/kor.srt": "/youtube-caption-customizer/static/media/kor.487fca85.srt"
   },
   "entrypoints": [
     "static/js/runtime-main.db819917.js",
     "static/css/2.5bbf332f.chunk.css",
-    "static/js/2.8c0af639.chunk.js",
-    "static/css/main.2c32f38f.chunk.css",
-    "static/js/main.4191f17d.chunk.js"
+    "static/js/2.dc0066b4.chunk.js",
+    "static/css/main.d435aff0.chunk.css",
+    "static/js/main.3b354488.chunk.js"
   ]
 }
