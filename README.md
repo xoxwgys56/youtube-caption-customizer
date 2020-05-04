@@ -50,3 +50,9 @@ Yes, side caption means just additional next caption.
 Summary
 _ 5:30 -> caption 3 (base caption) -> caption 4 (side caption)
 _ 13:45 -> caption 6 (base caption) -> caption 7 (side caption)
+
+
+## Issue
+
+when you use this app with mobile.
+youtube video is shaked.

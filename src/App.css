@@ -50,16 +50,11 @@
   /* background-color: bisque; */
 }
 
-.caption-item {
+.caption-item-container {
   text-align: center;
   margin: auto auto;
   background-color: white;
   width: 80%;
-}
-
-.caption-itme h5,
-.caption-item h6 {
-  margin: auto auto;
 }
 
 .caption-language {
@@ -197,6 +192,10 @@
 
 .caption-visible {
   visibility: visible;
+}
+
+.caption {
+  display: block;
 }
 
 /* utils */

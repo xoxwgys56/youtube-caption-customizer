@@ -22,13 +22,12 @@ class CaptionItem extends Component {
       fontStyle,
       fontUnit,
     } = this.props.config;
-    const style = {
+    return {
       fontSize: fontSize + fontUnit,
       color: color,
       fontWeight: fontWeight,
       fontStyle: fontStyle,
     };
-    return style;
   }
 
   getSideStyle() {
@@ -39,13 +38,12 @@ class CaptionItem extends Component {
       fontStyle,
       fontUnit,
     } = this.props.config;
-    const style = {
+    return {
       fontSize: fontSize * 0.5 + fontUnit,
       color: color,
       fontWeight: fontWeight,
       fontStyle: fontStyle,
     };
-    return style;
   }
 
   render() {
@@ -60,23 +58,32 @@ class CaptionItem extends Component {
 
     const captions = [];
     for (let i = 0; i < bunch.length; i++) {
-      console.log(bunch, bunch.length, i);
-      const primary = bunch.primary;
+      const primary = bunch[i].primary;
       const text = bunch[i].text;
 
       if (primary) {
-        captions.push(<Caption text={text} style={this.getPrimaryStyle} />);
+        const style = this.getPrimaryStyle();
+        captions.push(
+          <Caption key={captions.length} text={text} style={style} />
+        );
       } else {
-        captions.push(<Caption text={text} style={this.getSideStyle} />);
+        const style = this.getSideStyle();
+        captions.push(
+          <Caption key={captions.length} text={text} style={style} />
+        );
       }
     }
 
-    return <div className="caption-item">{captions.map((item) => item)}</div>;
+    return (
+      <div className="caption-item-container">
+        {captions.map((item) => item)}
+      </div>
+    );
   }
 }
 
 CaptionItem.propTypes = {
-  bunch: PropTypes.object.isRequired,
+  bunch: PropTypes.array.isRequired,
 };
 
 /** each caption item
@@ -87,6 +94,7 @@ CaptionItem.propTypes = {
  */
 const Caption = (props) => {
   const { text, style } = props;
+
   return <p style={style}>{text}</p>;
 };
 
