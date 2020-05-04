@@ -57,6 +57,7 @@ class CaptionItem extends Component {
 
     const captions = [];
     for (let i = 0; i < bunch.length; i++) {
+      console.log(bunch);
       const primary = bunch.primary;
       const text = bunch[i].caption.text;
 

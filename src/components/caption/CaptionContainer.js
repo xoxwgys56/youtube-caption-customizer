@@ -190,7 +190,7 @@ class CaptionContainer extends Component {
     for (let i = 0; i < indexes.length; i++) {
       const caption = captions[index++];
       caption.primary = true;
-      if (caption) bunch.push(caption);
+      if (caption.text) bunch.push(caption);
       // exception of last caption
       else bunch.push(emptyItem);
     }
@@ -199,7 +199,7 @@ class CaptionContainer extends Component {
       for (let i = 0; i < least; i++) {
         const caption = captions[index++];
         caption.primary = false;
-        if (caption) bunch.push(caption);
+        if (caption.text) bunch.push(caption);
         // exception of last caption
         else bunch.push(emptyItem);
       }
