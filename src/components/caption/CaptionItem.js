@@ -51,7 +51,7 @@ class CaptionItem extends Component {
   render() {
     const { bunch } = this.props;
 
-    this.setFontConfig();
+    // this.setFontConfig();
     // no caption that time
     if (!bunch) return <div>load caption...</div>;
 

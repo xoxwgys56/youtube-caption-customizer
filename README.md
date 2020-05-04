@@ -6,10 +6,11 @@
 
 With this app. You can customize your own caption.
 You can edit
-_ color
-_ size
-_ style
-_ weight \* additional side caption
+- color
+- size
+- style
+- weight
+-  additional side caption
 
 ## Skill Stack
 
