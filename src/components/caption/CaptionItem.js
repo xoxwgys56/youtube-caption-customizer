@@ -50,16 +50,19 @@ class CaptionItem extends Component {
 
   render() {
     const { bunch } = this.props;
+    /** bunch {
+     *    start, end, text, primary
+     * }
+     */
 
-    // this.setFontConfig();
     // no caption that time
     if (!bunch) return <div>load caption...</div>;
 
     const captions = [];
     for (let i = 0; i < bunch.length; i++) {
-      console.log(bunch);
+      console.log(bunch, bunch.length, i);
       const primary = bunch.primary;
-      const text = bunch[i].caption.text;
+      const text = bunch[i].text;
 
       if (primary) {
         captions.push(<Caption text={text} style={this.getPrimaryStyle} />);
