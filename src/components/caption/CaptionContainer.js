@@ -135,7 +135,13 @@ class CaptionContainer extends Component {
     }
   }
 
-  // after user choose caption's language
+  /** after user choose caption's language
+   *
+   * error case 403:
+   * https://stackoverflow.com/questions/30653865/downloading-captions-always-returns-a-403
+   * the comment guy said that may request user and video's owner is not the same user.
+   * */
+
   getCaptions(captionId) {
     // return;
     const gapi = window.gapi;
@@ -145,6 +151,15 @@ class CaptionContainer extends Component {
         tfmt: 'srt',
       })
       .then((rep) => {
+        switch (rep.headers.status) {
+          case 403:
+            this.setError(
+              'this video is forbidden. because video owner not permitted to download captions.'
+            );
+            console.log(rep);
+            return;
+        }
+
         const decode = decodeURIComponent(escape(rep.body));
         const captions = parse(decode);
         this.setState({ caption: captions });
@@ -156,6 +171,11 @@ class CaptionContainer extends Component {
       });
   }
 
+  /** :: this function called from getBunchOfCaption ::
+   *
+   * get all of index which included current play time.
+   *
+   */
   getCaptionIndexByTime() {
     const time = this.state.time * 1000;
     const captions = this.state.caption;
@@ -173,6 +193,15 @@ class CaptionContainer extends Component {
     return result;
   }
 
+  /**
+   * get current bunch of captions and return bunch as an array.
+   *
+   * first, this get all of captions that included in current time.
+   * those captions push to bunch array.
+   * then check get side caption or not.
+   * if (user check get side caption)
+   * get another caption, if bunch array's length < 3
+   */
   getBunchOfCaption() {
     const bunch = [];
 
