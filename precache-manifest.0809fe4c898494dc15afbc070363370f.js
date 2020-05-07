@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ba755ed35adf49b33778323bbf141cb4",
+    "revision": "e4f2ec3b43f8fd09f3b0d4d59bb6f5cb",
     "url": "/youtube-caption-customizer/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/youtube-caption-customizer/static/css/2.0284ae47.chunk.css"
   },
   {
-    "revision": "1ec081ef0353ae50d13c",
+    "revision": "139e353d3004dedbd299",
     "url": "/youtube-caption-customizer/static/css/main.80e57fd8.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/youtube-caption-customizer/static/js/2.e281a112.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "1ec081ef0353ae50d13c",
-    "url": "/youtube-caption-customizer/static/js/main.8325eac6.chunk.js"
+    "revision": "139e353d3004dedbd299",
+    "url": "/youtube-caption-customizer/static/js/main.1210a7d8.chunk.js"
   },
   {
     "revision": "28157b7d5f54b92b08f3",
