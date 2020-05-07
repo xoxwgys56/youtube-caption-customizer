@@ -15,6 +15,7 @@ export default class CaptionConfig extends Component {
     this.state = {
       color: '#000',
       fontSize: 2,
+      fontValue: 2,
       weight: 400,
       style: 'none',
       fontUnit: 'em',
@@ -34,10 +35,18 @@ export default class CaptionConfig extends Component {
     this.popupBackground = React.createRef();
     this.popupContent = React.createRef();
     this.testRef = React.createRef();
+    this.selectWeightRef = React.createRef();
   }
 
   componentDidMount() {
     this.props.onChange(this.state);
+
+    // initialize font weight selected
+    this.selectWeightRef.current.childNodes.forEach((item) => {
+      if (item.value == this.state.weight) {
+        item.setAttribute('selected', true);
+      }
+    });
   }
 
   onClickPopup(e) {
@@ -70,22 +79,29 @@ export default class CaptionConfig extends Component {
   }
 
   onChangeSlider(e) {
+    this.setState({ fontValue: e.target.value });
     const size = this.state.maxFontSize * (e.target.value / 10);
     const unit = 'em';
     this.setState({ fontSize: size });
     this.setState({ fontUnit: unit });
-
+    // change preview
     this.testRef.current.style.fontSize = size + unit;
   }
 
   onChangeWeight(e) {
     const weight = e.target.value;
     this.setState({ weight: weight });
+
+    // change preview
+    this.testRef.current.style.fontWeight = weight;
   }
 
   onChangeStyle(e) {
     const style = e.target.value;
     this.setState({ style: style });
+
+    // change preview
+    this.testRef.current.style.fontStyle = style;
   }
 
   onChangeCheckbox(e) {
@@ -142,6 +158,7 @@ export default class CaptionConfig extends Component {
                 min="1"
                 max="10"
                 onChange={this.onChangeSlider}
+                value={this.state.fontValue}
               />
             </div>
           </div>
@@ -157,9 +174,14 @@ export default class CaptionConfig extends Component {
           </div>
           {/* font weight and italic style row */}
           <div className="row caption-config-popup-row">
+            {/* font weight */}
             <div className="four columns">weight</div>
             <div className="four columns">
-              <select className="u-full-width" onChange={this.onChangeWeight}>
+              <select
+                className="u-full-width"
+                onChange={this.onChangeWeight}
+                ref={this.selectWeightRef}
+              >
                 {weight.map((item, i) => (
                   <option value={item} key={i}>
                     {item}
@@ -167,10 +189,12 @@ export default class CaptionConfig extends Component {
                 ))}
               </select>
             </div>
+            {/* font style */}
             <div className="four columns">
               <select onChange={this.onChangeStyle}>
                 <option value="normal">normal</option>
                 <option value="italic">italic</option>
+                {/* oblique is not support on 'Raleway' font */}
                 {/* <option value="oblique">oblique</option> */}
               </select>
             </div>

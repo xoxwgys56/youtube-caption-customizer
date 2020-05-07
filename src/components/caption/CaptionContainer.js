@@ -247,7 +247,12 @@ class CaptionContainer extends Component {
 
     // no video
     if (!player) {
-      return <div className="caption-container">no video loaded</div>;
+      return (
+        <div className="caption-container">
+          <CaptionConfig onChange={this.onChangeConfig} />
+          no video loaded
+        </div>
+      );
     }
 
     let infoMsg;
